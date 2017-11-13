@@ -1,5 +1,11 @@
 <div class="container">
-    <app-header></app-header>
-    <hr>
-    <router-outlet></router-outlet>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="form-group">
+                <label for="userInput">Enter text:</label>
+                <input id="userInput" type="text" class="form-control" [(ngModel)]="message.content">
+            </div>
+            <app-message [message]="message" (editClicked)="message.content = $event"></app-message>
+        </div>
+    </div>
 </div>
