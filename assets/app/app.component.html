@@ -1,15 +1,3 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="form-group">
-                <div class="sign-in">
-                  <label for="userInput">Username</label>
-                  <input id="userInput" type="text" class="form-control" [(ngModel)]="message.content">
-                  <label for="userInput">Password</label>
-                  <input id="userInput" type="password" class="form-control" [(ngModel)]="message.content">
-                </div>
-            </div>
-            <app-message [message]="message" (editClicked)="message.content = $event"></app-message>
-        </div>
-    </div>
+    <login></login>
 </div>
