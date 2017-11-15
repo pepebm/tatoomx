@@ -1,10 +1,31 @@
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <div class="form-group">
-            <div class="sign-in">
-                <h2>Hello from login</h2>
-                <p>and other places...</p>
-            </div>
+<div class="bg-img">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                <div class="sign-in">
+                    <div class="sign-in-header">
+                        <h1 class="text-center">Sign In</h1>
+                    </div>
+                    <div class="sign-in-content">
+                        <div class="form-group">
+                            <label for="username" class="label-control">Username:</label>
+                            <input type="text" name="username" placeholder="Username" class="form-control" formControlName="username" autocomplete="off" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="username" class="label-control">Password:</label>
+                            <input type="password" name="username" placeholder="Password" class="form-control" formControlName="password">
+                        </div>
+                    </div>
+                    <div class="sign-in-footer">
+                        <button type="submit" name="loginbtn" class="btn btn-primary">Login</button>
+                        <a href="" style="float:right;">Lost your password?</a>
+                        <button type="button" name="loginbtn" class="btn btn-primary"> <fa name="facebook"></fa> </button>
+                        <button type="button" name="loginbtn" class="btn btn-secondary" [routerLink]="['/register']">Register</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

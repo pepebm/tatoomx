@@ -1,21 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from "./app.component";
-import {FormsModule} from "@angular/forms";
 import { routing } from './app.routing';
-
-import { MessageComponent } from "./message/message.component";
 import { LoginComponent } from "./login/login.component";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        MessageComponent,
-        LoginComponent
+        LoginComponent,
+        RegisterComponent
     ],
-    imports: [BrowserModule, FormsModule, routing],
+    imports: [
+      BrowserModule,
+      FormsModule,
+      ReactiveFormsModule,
+      routing,
+      AngularFontAwesomeModule
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
