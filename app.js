@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var db = require('./db');
 
 var appRoutes = require('./routes/app');
+var tattooistsRoutes = require('./routes/tattooists');
+var peopleRoutes = require('./routes/people');
 
 var app = express();
 
@@ -41,6 +43,8 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', appRoutes);
+app.use('/tattooists',tattooistsRoutes);
+app.use('/people',peopleRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
