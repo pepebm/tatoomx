@@ -9,6 +9,8 @@ var db = require('./db');
 var appRoutes = require('./routes/app');
 var tattooistsRoutes = require('./routes/tattooists');
 var peopleRoutes = require('./routes/people');
+var imagesRoutes = require('./routes/images');
+var studiosRoutes = require('./routes/studios');
 
 var app = express();
 
@@ -45,6 +47,8 @@ app.use(function (req, res, next) {
 app.use('/', appRoutes);
 app.use('/tattooists',tattooistsRoutes);
 app.use('/people',peopleRoutes);
+app.use('/images',imagesRoutes);
+app.use('/studios',studiosRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

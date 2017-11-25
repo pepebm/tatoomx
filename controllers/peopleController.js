@@ -1,11 +1,12 @@
 var db = require('../db.js');
 
-exports.insert = function(req,res) {
-	db.get().query("INSERT INTO Users (mail,password) VALUES ('"+req.body.mail+"','"+req.body.pass+"')",function(err,rows) {
+exports.create = function(req,res) {
+	db.get().query("INSERT INTO Users (mail,password) VALUES ('"+req.body.mail+"','"+req.body.password+"')",function(err,rows) {
 		var response = {};
 		if(err){
 			response.status = 2;
 			response.message = err;
+			res.send(response);
 		}
 		else{
 			db.get().query("INSERT INTO People (name,gender,city,userId) VALUES ('"+req.body.name+"','"+req.body.gender+"','"+req.body.city+"',"+rows.insertId+")",function(err2,rows2) {
