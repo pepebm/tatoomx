@@ -1,8 +1,8 @@
-function Studio(_id, _name, _gender, _city){
+function Studio(_id, _name, _desc, _ubi){
 	this.id = _id;
 	this.name = _name;
-	this.gender = _gender;
-	this.city = _city;
+	this.description = _desc;
+	this.ubicacion = _ubi;
 }
 
 module.exports = Studio;
