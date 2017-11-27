@@ -158,7 +158,7 @@ exports.likeStudio = function(req,res) {
 }
 
 exports.deleteLikeImage = function(req,res) {
-	db.get().query("DELETE FROM LikesImages WHERE personId="+req.body.personId+" AND imageId="req.body.imageId,function(err,rows) {
+	db.get().query("DELETE FROM LikesImages WHERE personId="+req.body.personId+" AND imageId="+req.body.imageId,function(err,rows) {
 		var response = {};
 		if(err){
 			response.status = 2;
@@ -173,7 +173,7 @@ exports.deleteLikeImage = function(req,res) {
 }
 
 exports.deleteLikeTattooist = function(req,res) {
-	db.get().query("DELETE FROM LikesTattooists WHERE personId="+req.body.personId+" AND tattooistId="req.body.tattooistId,function(err,rows) {
+	db.get().query("DELETE FROM LikesTattooists WHERE personId="+req.body.personId+" AND tattooistId="+req.body.tattooistId,function(err,rows) {
 		var response = {};
 		if(err){
 			response.status = 2;
@@ -188,7 +188,7 @@ exports.deleteLikeTattooist = function(req,res) {
 }
 
 exports.deleteLikeStudio = function(req,res) {
-	db.get().query("DELETE FROM LikesStudios WHERE personId="+req.body.personId+" AND studioId="req.body.studioId,function(err,rows) {
+	db.get().query("DELETE FROM LikesStudios WHERE personId="+req.body.personId+" AND studioId="+req.body.studioId,function(err,rows) {
 		var response = {};
 		if(err){
 			response.status = 2;
