@@ -25,7 +25,7 @@ exports.login = function(req,res) {
 							if(rows2 && rows2.length == 1){
 								response.status = 0;
 								response.message = "Success";
-								response.data = new Tattooist(rows2[0].tattooistId,rows2[0].name,rows2[0].gender,rows2[0].city,rows2[0].userId);
+								response.data = new Tattooist(rows2[0].tattooistId,rows2[0].name,rows2[0].gender,rows2[0].city,rows2[0].userId,rows2[0].phone);
 							}
 							else{
 								response.status = 1;
