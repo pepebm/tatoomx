@@ -1,0 +1,45 @@
+#header h1,
+  #header h2{
+    z-index: 2;
+    position: relative;
+}
+#header {
+    position: relative;
+    background-image: -webkit-linear-gradient(left, #abb430 0%, #6c8023 110%);
+    background-image: -moz-linear-gradient(left, #abb430 0%, #6c8023 110%);
+    background-image: -o-linear-gradient(left, #abb430 0%, #6c8023 110%);
+    background-image: linear-gradient(to right, #abb430 0%, #6c8023 110%);
+}
+#header:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.25;
+    background-image: url('http://www.etumos.com/mkto/img/etumos-responsive-lp.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.profile-img{
+  width: 150px;
+  height: 150px;
+}
+
+.jumbotron{
+  min-height: 30vh;
+  z-index: -1;
+  margin-bottom: 0;
+}
+
+.container-img{
+  position: static;
+  margin-top: -12rem;
+
+}
