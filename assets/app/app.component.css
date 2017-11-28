@@ -1,3 +1,67 @@
-.bg-text{
-  font-size: 40rem;
+.thecontainer{
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    /*-- our cleafix hack -- */
+    .therow:before,
+    .therow:after {
+        content:"";
+        display: table ;
+        clear:both;
+    }
+
+    [class*='thecol-'] {
+        float: left;
+        min-height: 1px;
+        width: 16.66%;
+        /*-- our gutter -- */
+        padding: 12px;
+        
+    }
+
+    .thecol-1{ width: 16.66%; }
+    .thecol-2{ width: 33.33%; }
+    .thecol-3{ width: 50%;    }
+    .thecol-4{ width: 66.66%; }
+    .thecol-5{ width: 83.33%; }
+    .thecol-6{ width: 100%;   }
+
+    .outline, .outline *{
+        outline: 1px solid #F6A1A1;
+    }
+
+    /*-- some extra column content styling --*/
+    [class*='thecol-'] > p {
+     padding: 10px;
+     margin: 0;
+     text-align: center;
+     color: white;
+    }
+
+    @media all and (max-width:800px){
+        .thecol-1{ width: 33.33%;  }
+        .thecol-2{ width: 50%;     }
+        .thecol-3{ width: 83.33%;  }
+        .thecol-4{ width: 100%;    }
+        .thecol-5{ width: 100%;    }
+        .thecol-6{ width: 100%;    }
+
+        .therow .thecol-2:last-of-type{
+            width: 100%;
+        }
+
+        .therow .thecol-5 ~ .thecol-1{
+            width: 100%;
+        }
+    }
+
+    @media all and (max-width:650px){
+        .thecol-1{ width: 50%;     }
+        .thecol-2{ width: 100%;    }
+        .thecol-3{ width: 100%;    }
+        .thecol-4{ width: 100%;    }
+        .thecol-5{ width: 100%;    }
+        .thecol-6{ width: 100%;    }
+    }
 }
