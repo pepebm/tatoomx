@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Http,Headers } from "@angular/http";
-import { Observable } from "rxjs/Rx";
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -15,5 +14,13 @@ export class TattooistsService {
 
 	create(body){
 		return this.http.post(this.serverURL + 'tattooists/register', body, {headers:this.headers}).map(res => res.json());
+	}
+
+	getAll(){
+		return this.http.get(this.serverURL + 'tattooists/',{headers: this.headers}).map(res => res.json());
+	}
+
+	getImages(tattooistId){
+		return this.http.get(this.serverURL + 'tattooists/' + tattooistId + '/images', {headers: this.headers}).map(res => res.json());
 	}
 }

@@ -28,31 +28,6 @@ exports.getAll = function(req,res){
 	});
 }
 
-// CREO QUE NO LA NECESITO
-exports.getOne = function(req,res){
-	db.get().query('SELECT * FROM Tattooists WHERE tattooistId='+req.params.id, function(err,rows){
-		var response = {};
-		var data = null;
-		if(err){
-			response.status = 2;
-			response.message = err;
-		}
-		else{
-			if(rows && rows.length == 1){
-				data = new Tattooist(rows[0].tattooistId,rows[0].name,rows[0].gender,rows[0].city,rows[0].userId,rows[0].studioId,rows[0].phone);
-				response.status = 0;
-				response.message = 'Success';
-			}
-			else{
-				response.status = 1;
-				response.message = 'No tattooist found with that id';
-			}
-			response.data = data;
-		}
-		res.send(response);
-	});
-}
-
 exports.create = function(req,res){
 	db.get().query("SELECT userId FROM Users WHERE mail='"+req.body.mail+"'",function(error,registros) {
 		var response = {};
