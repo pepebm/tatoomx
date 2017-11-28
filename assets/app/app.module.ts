@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ImagesService } from './providers/images-service';
 import { TattooistsService } from './providers/tattooists-service';
 import { PeopleService } from './providers/people-service';
+import { StudiosService } from './providers/studios-service';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { PeopleService } from './providers/people-service';
       SessionService,
       ImagesService,
       TattooistsService,
-      PeopleService
+      PeopleService,
+      StudiosService
     ]
     bootstrap: [AppComponent]
 })
