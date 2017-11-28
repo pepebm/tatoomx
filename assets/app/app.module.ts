@@ -9,13 +9,14 @@ import { routing } from './app.routing';
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from './register/register.component';
 import { LoginService } from './providers/login-service';
-
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        HomeComponent
     ],
     imports: [
       BrowserModule,
