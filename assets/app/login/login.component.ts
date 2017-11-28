@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.myForm.valid){
-      console.log(this.myForm.controls.username.value + " " + this.myForm.controls.password._value);
       this.loginService.login(this.myForm.controls.username.value,this.myForm.controls.password.value,'tattooist').subscribe(
         data => {
           console.log(this.loginService.getSession());
@@ -34,6 +33,5 @@ export class LoginComponent implements OnInit {
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
-
   }
 }
