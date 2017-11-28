@@ -26,3 +26,20 @@
 .navbar {
   margin-bottom: 0;
 }
+
+.profile-img{
+  width: 150px;
+  height: 150px;
+}
+
+.jumbotron{
+  min-height: 30vh;
+  z-index: -1;
+  margin-bottom: 0;
+}
+
+.container-img{
+  position: static;
+  margin-top: -12rem;
+
+}
