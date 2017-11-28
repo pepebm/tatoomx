@@ -6,3 +6,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.css', '../app.component.css']
 })
+
+export class ArtistComponent {
+
+}
