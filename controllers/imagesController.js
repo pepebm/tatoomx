@@ -1,7 +1,7 @@
 var db = require('../db.js');
 var Image = require('../models/image');
 
-export.getAll = function(req,res) {
+exports.getAll = function(req,res) {
 	db.get().query('SELECT * FROM Images',function (err,rows) {
 		var response = {};
 		var data = [];

@@ -13,7 +13,6 @@ exports.login = function(req,res) {
 		}
 		else{
 			if(rows && rows.length == 1){
-				console.log(req.body.type);
 				if(req.body.type == 'tattooist'){
 					db.get().query("SELECT * FROM Tattooists WHERE userId="+rows[0].userId,function(err2,rows2) {
 						if(err2){
