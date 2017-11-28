@@ -4,21 +4,39 @@ var fs = require('fs');
 //var path = require('path'); //path.resolve(image) // IF FORBIDEN ERROR
 
 exports.getAll = function(req,res) {
-	db.get().query('SELECT * FROM Images',function (err,rows) {
+	db.get().query('SELECT imageId FROM LikesImages WHERE personId='+req.params.id,function(e,r){
 		var response = {};
-		var data = [];
-		if(err){
+		var liked = [];
+		if(e){
 			response.status = 2;
 			response.message = err;
+			res.send(response);
 		}
 		else{
-			for (var i = 0; i < rows.length; i++) {
-				data.push(new Image(rows[i].imageId, rows[i].imageblob, rows[i].created_at, rows[i].tattooistId));
+			for (var i = 0; i < r.length; i++) {
+				liked.push(r[i].imageId);
 			}
-			response.status = 0;
-			response.message = 'Success';
+			db.get().query('SELECT * FROM Images',function (err,rows) {
+				var data = [];
+				if(err){
+					response.status = 2;
+					response.message = err;
+				}
+				else{
+					for (var i = 0; i < rows.length; i++) {
+						data.push(new Image(rows[i].imageId, rows[i].imageblob, rows[i].created_at, rows[i].tattooistId));
+					}
+					data.forEach(image => {
+						if(image.imageId in liked) image.liked = true;
+						else liked = false;
+					});
+					response.status = 0;
+					response.message = 'Success';
+					response.data = data;
+				}
+				res.send(response);
+			});
 		}
-		res.send(response);
 	});
 }
 
