@@ -1,6 +1,6 @@
 import {Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { LoginService } from '../providers/login-service';
+import { SessionService } from '../providers/session-service';
 
 @Component({
     selector: 'login',
@@ -11,16 +11,20 @@ import { LoginService } from '../providers/login-service';
 export class LoginComponent implements OnInit {
   myForm: Formgroup;
 
-  constructor(private loginService: LoginService){
+  constructor(private sessionService: SessionService){
 
   }
 
   onSubmit(){
     if(this.myForm.valid){
-      console.log(this.myForm.controls.username.value + " " + this.myForm.controls.password._value);
-      this.loginService.login(this.myForm.controls.username.value,this.myForm.controls.password.value,'tattooist').subscribe(
+      this.sessionService.login(this.myForm.controls.username.value,this.myForm.controls.password.value,'tattooist').subscribe(
         data => {
-          console.log(this.loginService.getSession());
+          if(data){
+
+          }
+          else{
+            //CANT LOGGIN
+          }
         },
         err=>{
           console.log(err);
@@ -34,6 +38,5 @@ export class LoginComponent implements OnInit {
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
-
   }
 }

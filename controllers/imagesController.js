@@ -1,5 +1,6 @@
 var db = require('../db.js');
 var Image = require('../models/image');
+var fs = require('fs');
 
 exports.getAll = function(req,res) {
 	db.get().query('SELECT * FROM Images',function (err,rows) {
@@ -21,17 +22,28 @@ exports.getAll = function(req,res) {
 }
 
 exports.add = function(req,res) {
-	db.get().query("INSERT INTO Images (imageblob,tattooistId) VALUES ('"+req.body.blob+"','"+req.body.tattooistId+"')",function(err,rows) {
-		var response = {};
+	var b64 = req.body.blob;
+	var created_at = new Date();
+	created_at = a.getFullYear().toString() + a.getMonth() + a.getDate() + a.getHours() + a.getMinutes() + a.getSeconds();
+	var bufferedImg = new Buffer(b64.substring(b64.indexOf(',')+1),'base64');
+	fs.writeFile('../storage/'+created_at, bufferedImg,function(err) {
 		if(err){
-			response.status = 2;
-			response.message = err;
+
 		}
 		else{
-			response.status = 0;
-			response.message = 'Success';
+			db.get().query("INSERT INTO Images (imageblob,tattooistId) VALUES ('http://localhost:3000/storage/"+created_at+"','"+req.body.tattooistId+"')",function(err,rows) {
+				var response = {};
+				if(err){
+					response.status = 2;
+					response.message = err;
+				}
+				else{
+					response.status = 0;
+					response.message = 'Success';
+				}
+				res.send(response);
+			});
 		}
-		res.send(response);
 	});
 }
 
