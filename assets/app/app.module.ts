@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpModule, Http } from "@angular/http";
 
 import { AppComponent } from "./app.component";
 import { routing } from './app.routing';
@@ -20,7 +21,8 @@ import { RegisterComponent } from './register/register.component';
       FormsModule,
       ReactiveFormsModule,
       routing,
-      AngularFontAwesomeModule
+      AngularFontAwesomeModule,
+      HttpModule
     ],
     bootstrap: [AppComponent]
 })
