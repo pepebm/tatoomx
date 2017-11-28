@@ -6,3 +6,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   templateUrl: './discover.component.html',
   styleUrls: ['./discover.component.css', '../app.component.css']
 })
+export class DiscoverComponent {
+
+}

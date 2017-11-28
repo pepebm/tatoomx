@@ -6,3 +6,6 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css', '../app.component.css']
 })
+export class ProfileComponent {
+  
+}
