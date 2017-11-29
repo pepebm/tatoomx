@@ -3,28 +3,39 @@ var Studio = require('../models/studio');
 var Tattooist = require('../models/tattooist');
 
 exports.getAll = function(req,res) {
-	db.get().query('SELECT * FROM Studios',function(err,rows) {
+	db.get().query('SELECT studioId FROM LikesStudios WHERE personId='+req.params.id,function(e,r){
 		var response = {};
-		var data = [];
-		if(err){
+		var liked = [];
+		if(e){
 			response.status = 2;
-			response.message = err;
+			response.message = e;
+			res.send(response);
 		}
 		else{
-			if(rows && rows.length > 0){
-				for (var i = 0; i < rows.length; i++) {
-					data.push(new Studio(rows[i].studioId, rows[i].name, rows[i].description, rows[i].ubicacion))
+			for (var i = 0; i < r.length; i++) {
+				liked.push(r[i].studioId);
+			}
+			db.get().query('SELECT * FROM Studios',function(err,rows) {
+				var data = [];
+				if(err){
+					response.status = 2;
+					response.message = err;
 				}
-				response.status = 0;
-				response.message = "Success";
-			}
-			else{
-				response.status = 1;
-				response.message = "No studios found.";
-			}
-			response.data = data;
+				else{
+					for (var i = 0; i < rows.length; i++) {
+						data.push(new Studio(rows[i].studioId, rows[i].name, rows[i].description, rows[i].ubicacion))
+					}
+					for (var i = 0; i < data.length; i++) {
+						if(liked.indexOf(data[i].id) > -1) data[i].liked = true;
+						else data[i].liked = false;
+					}
+					response.status = 0;
+					response.message = "Success";
+					response.data = data;
+				}
+				res.send(response);
+			});
 		}
-		res.send(response);
 	});
 }
 

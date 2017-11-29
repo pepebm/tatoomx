@@ -13,7 +13,7 @@ exports.getAll = function(req,res){
 		}
 		else{
 			for (var i = 0; i < r.length; i++) {
-				liked.push(r[i].imageId);
+				liked.push(r[i].tattooistId);
 			}
 			db.get().query('SELECT * FROM Tattooists', function(err,rows) {
 				var data = [];
@@ -26,7 +26,7 @@ exports.getAll = function(req,res){
 						data.push(new Tattooist(rows[i].tattooistId,rows[i].name,rows[i].gender,rows[i].city,rows[i].userId,rows[i].studioId,rows[i].phone));
 					}
 					for (var i = 0; i < data.length; i++) {
-						if(data[i].id in liked) data[i].liked = true;
+						if(liked.indexOf(data[i].id) > -1) data[i].liked = true;
 						else data[i].liked = false;
 					}
 					response.status = 0;
