@@ -1,6 +1,7 @@
 import {Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { StudiosService } from '../providers/studios-service';
+import { SessionService } from '../providers/session-service';
 
 @Component({
   selector: 'studio',
@@ -10,7 +11,8 @@ import { StudiosService } from '../providers/studios-service';
 export class StudioComponent {
   studios: any = [];
   artists: any = []:
-  constructor(private studioService: StudiosService){
+  constructor(private sessionService: SessionService, private studioService: StudiosService){
+    console.log(this.sessionService.getSession());
     this.studioService.getAll().subscribe(
       data => {
         if(data.status >= 2){

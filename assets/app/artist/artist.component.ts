@@ -1,6 +1,7 @@
 import {Component, OnInit, Injectable } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { TattooistsService } from '../providers/tattooists-service';
+import { SessionService } from '../providers/session-service';
 
 @Component({
   selector: 'artist',
@@ -14,7 +15,7 @@ export class ArtistComponent {
   independant: any = [];
   studio: any = [];
   image: any = [];
-  constructor(private artistsService: TattooistsService){
+  constructor(private sessionService: SessionService, private artistsService: TattooistsService){
     this.artistsService.getAll().subscribe(
       data => {
         //console.log(data);
@@ -57,6 +58,5 @@ export class ArtistComponent {
       }
     );
   }
-
 
 }

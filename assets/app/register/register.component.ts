@@ -1,5 +1,8 @@
 import {Component, OnInit } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { TattooistsService } from '../providers/tattooists-service';
+import { PeopleService } from '../providers/people-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'register',
@@ -10,7 +13,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isTattooist: boolean = false;
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder, private tattooistService: TattooistsService, private peopleService: PeopleService, private router: Router){
     this.registerForm = this.formBuilder.group({
         name:['',
           Validators.compose([
@@ -43,7 +46,44 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    this.isTattooist = !this.isTattooist;
+    if(this.isTattooist){
+      this.tattooistService.create(this.registerForm.controls.name.value,
+                                  this.registerForm.controls.email.value,
+                                  this.registerForm.controls.city.value,
+                                  this.registerForm.controls.sex.value,
+                                  this.registerForm.controls.phone.value,
+                                  this.registerForm.controls.password.value,
+                                  this.registerForm.controls.passwordConfirm.value).subscribe(
+        data => {
+          if(data.status >= 2) { console.log("Error"); }
+          else {
+            console.log(data)
+          }
+        },
+        error => {
+          console.log(error)
+        }
+      );
+    } else {
+      this.peopleService.create({
+                                name: this.registerForm.controls.name.value,
+                                mail: this.registerForm.controls.email.value,
+                                city: this.registerForm.controls.city.value,
+                                gender: this.registerForm.controls.sex.value,
+                                phone: this.registerForm.controls.phone.value,
+                                password: this.registerForm.controls.password.value,
+                                passwordConfirm: this.registerForm.controls.passwordConfirm.value}).subscribe(
+        data => {
+          if(data.status >= 2) { console.log("Error"); }
+          else {
+            console.log(data)
+          }
+        },
+        error => {
+          console.log(error)
+        }
+      );
+    }
   }
 
   toggle(state){

@@ -12,11 +12,12 @@
 
      <div class="collapse navbar-collapse" id="toggle-nav">
        <ul class="nav navbar-nav navbar-right">
+         <li> <a>Logged in as {{sessionService.getSession().name}}</a> </li>
          <li><a href="discover">Discover</a></li>
          <li><a href="artist">Artists</a></li>
          <li><a href="studio">Studios</a></li>
          <li><a href="profile">Profile</a></li>
-         <li> <a href=""> Log Out <fa name="sign-out"></fa> </a> </li>
+         <li> <a (click)="sessionService.logout()" href="login"> Log Out <fa name="sign-out"></fa> </a> </li>
        </ul>
      </div>
   </div> <!-- close container div -->
@@ -34,12 +35,12 @@
            <img class="card-img-top" src="{{card.imageblob}}" alt="Card image cap">
            <div class="card-block">
              <h4 class="card-title">{{card.name}}</h4>
-             <a href="#" class="btn btn-primary">
+             <a class="btn btn-primary">
                <div *ngIf="card.liked == true">
-                 <fa name="heart" (click)="liked(card.id)"></fa>
+                 <fa name="heart" (click)="unliked(card.id)"></fa>
                </div>
                <div *ngIf="card.liked == false">
-                 <fa name="heart-o"></fa>
+                 <fa name="heart-o" (click)="liked(card.id)"></fa>
                </div>
              </a>
             </div>
