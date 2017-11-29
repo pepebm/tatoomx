@@ -1,5 +1,5 @@
 import {Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'profile',
@@ -8,6 +8,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 })
 
 export class ProfileComponent {
+  registerForm: FormGroup;
+
   images: any[] = [
     {
       "src": "http://www.menstattooideas.net/tattooimages/2014/07/skull-tattoo-for-men.jpg"
@@ -63,4 +65,10 @@ export class ProfileComponent {
     this.temp_studios = this.studios.slice(0,4);
   }
 
+  constructor(private formBuilder: FormBuilder){
+    this.editForm = this.formBuilder.group({
+        password:['', Validators.required],
+        passwordConfirm:['', Validators.required]
+    });
+  }
 }

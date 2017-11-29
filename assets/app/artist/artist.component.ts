@@ -13,9 +13,7 @@ export class ArtistComponent {
   artists: any;
   independant: any = [];
   studio: any = [];
-  search_both: any:
-  search_studio: any;
-  search_inde: any;
+  image: any = [];
   constructor(private artistsService: TattooistsService){
     this.artistsService.getAll().subscribe(
       data => {
@@ -42,6 +40,22 @@ export class ArtistComponent {
       }
     );
 
+  }
+
+  loadImages(id){
+    this.artistsService.getImages(id).subscribe(
+      data => {
+        if(data.status >= 2){
+          console.log("Error");
+        } else {
+          this.image = data.data
+          console.log(this.image);
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
 
