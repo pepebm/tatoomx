@@ -22,6 +22,11 @@ export class DiscoverComponent {
 		this.imagesService.getAll().subscribe(
 			data => {
 				this.images = data.data;
+				console.log(data.data);
+				for (var i = 0; i < this.images.length; i++) {
+					this.images[i].image = this.sessionService.serverURL + this.images[i].image
+				}
+
 			},
 			err => {
 				console.log(err);

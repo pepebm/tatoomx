@@ -17,7 +17,7 @@ export class ArtistComponent {
   image: any = [];
   constructor(private sessionService: SessionService, private artistsService: TattooistsService){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log("HOLA");
+   
     this.artistsService.getAll().subscribe(
       data => {
         //console.log(data);

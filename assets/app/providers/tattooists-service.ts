@@ -11,6 +11,7 @@ export class TattooistsService {
 	constructor(private http: Http, private sessionService: SessionService){
 		this.headers = new Headers();
 		this.headers.append('Content-Type','application/json');
+		console.log(this.sessionService);
 	}
 
 	create(body){
