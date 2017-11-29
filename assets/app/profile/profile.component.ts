@@ -1,7 +1,7 @@
 import {Component, OnInit } from "@angular/core";
 import {FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { PeopleService } from '../providers/people-service';
-
+import { ImagesService } from '../providers/images-service';
 
 @Component({
   selector: 'profile',
@@ -50,7 +50,7 @@ export class ProfileComponent {
   temp_studios = this.studios.slice(0,4);
   image: any;
 
-  constructor(private formBuilder: FormBuilder, private peopleService: PeopleService){
+  constructor(private formBuilder: FormBuilder, private peopleService: PeopleService, private imagesService: ImagesService){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.currentUser);
     this.editForm = this.formBuilder.group({

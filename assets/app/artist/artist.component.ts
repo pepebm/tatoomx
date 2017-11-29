@@ -2,7 +2,7 @@ import {Component, OnInit, Injectable } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { TattooistsService } from '../providers/tattooists-service';
 import { SessionService } from '../providers/session-service';
-
+import { PeopleService } from '../providers/people-service';
 @Component({
   selector: 'artist',
   templateUrl: './artist.component.html',
@@ -15,7 +15,7 @@ export class ArtistComponent {
   independent: any = [];
   studio: any = [];
   image: any = [];
-  constructor(private sessionService: SessionService, private artistsService: TattooistsService){
+  constructor(private sessionService: SessionService, private artistsService: TattooistsService, private peopleService: PeopleService){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
     this.artistsService.getAll().subscribe(
@@ -58,5 +58,37 @@ export class ArtistComponent {
       }
     );
   }
+
+  liked(artist){
+
+    artist.liked = true;
+		this.peopleService.likeTattooist(artist.id).subscribe(
+			data => {
+				if(data.status >= 2){
+					console.log("Error");
+				} else {
+					console.log(data);
+				}
+			},
+			error => {
+				console.log(error);
+			}
+		);
+	}
+	disliked(artist){
+    artist.liked = false;
+		this.peopleService.dislikeTattooist(artist.id).subscribe(
+			data => {
+				if(data.status >= 2){
+					console.log(data);
+				} else {
+					console.log(data);
+				}
+			},
+			error => {
+				console.log(error)
+			}
+		);
+	}
 
 }
