@@ -1,6 +1,7 @@
 import {Component, OnInit } from "@angular/core";
 import { SessionService } from '../providers/session-service';
 import { ImagesService } from '../providers/images-service';
+import { PeopleService } from '../providers/people-service';
 
 @Component({
   selector: 'discover',
@@ -8,17 +9,47 @@ import { ImagesService } from '../providers/images-service';
   styleUrls: ['./discover.component.css', '../app.component.css']
 })
 export class DiscoverComponent {
-	constructor(private sessionService: SessionService, private imagesService: ImagesService){
+  images: any = [];
+	constructor(private sessionService: SessionService, private imagesService: ImagesService, private peopleService: PeopleService){
 		this.getImages();
 	}
 
 	getImages(){
 		this.imagesService.getAll().subscribe(
 			data => {
-				console.log(data);
+				this.images = data.data;
 			},
 			err => {
 				console.log(err);
+			}
+		);
+	}
+
+	liked(id){
+		this.peopleService.likeImage(id).subscribe(
+			data => {
+				if(data.status >= 2){
+					console.log("Error");
+				} else {
+					console.log(data);
+				}
+			},
+			error => {
+				console.log(error);
+			}
+		);
+	}
+	disliked(id){
+		this.peopleService.dislikeImage(id).subscribe(
+			data => {
+				if(data.status >= 2){
+					console.log("Error");
+				} else {
+					console.log(data);
+				}
+			},
+			error => {
+				console.log(error)
 			}
 		);
 	}
