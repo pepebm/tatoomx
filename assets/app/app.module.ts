@@ -37,14 +37,15 @@ import { SearchFilterPipe } from './pipes/search.pipe';
       ReactiveFormsModule,
       routing,
       AngularFontAwesomeModule,
-      HttpModule
+      HttpModule,
     ],
     providers: [
       SessionService,
       ImagesService,
       TattooistsService,
       PeopleService,
-      StudiosService
+      StudiosService,
+      
     ]
     bootstrap: [AppComponent]
 })

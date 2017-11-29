@@ -9,10 +9,11 @@ import { SessionService } from '../providers/session-service';
   styleUrls: ['./studio.component.css', '../app.component.css']
 })
 export class StudioComponent {
+  currentUser: any;
   studios: any = [];
   artists: any = []:
   constructor(private sessionService: SessionService, private studioService: StudiosService){
-    console.log(this.sessionService.getSession());
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.studioService.getAll().subscribe(
       data => {
         if(data.status >= 2){
