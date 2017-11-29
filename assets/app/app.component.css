@@ -24,10 +24,6 @@
     .thecol-5{ width: 83.33%; }
     .thecol-6{ width: 100%;   }
 
-    .outline, .outline *{
-        outline: 1px solid #F6A1A1;
-    }
-
     [class*='thecol-'] > p {
      padding: 10px;
      margin: 0;

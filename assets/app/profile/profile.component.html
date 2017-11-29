@@ -28,9 +28,12 @@
      <div class="therow">
         <div class="thecol-6">
            <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt="profile_img" class="img-responsive center-block profile-img">
-           <h3 class="profile-name">Profile Name</h3>
+           <h3 class="profile-name">{{currentUser.name}}</h3>
            <div class="thecol-6">
-              <a class="btn btn-primary center-block" data-toggle="modal" data-target="#myModal" style="width:25%"> <fa name="user"></fa> Edit Profile </a>
+              <a class="btn btn-primary center-block modal-btn" data-toggle="modal" data-target="#myModal"> <fa name="user"></fa> Edit Profile </a>
+              <div *ngIf="currentUser.type == 'tattooist'">
+                <a class="btn btn-primary center-block modal-btn" data-toggle="modal" data-target="#upload_img"> <fa name="plus"></fa> Add Image </a>
+              </div>
            </div>
         </div>
      </div>
@@ -79,11 +82,58 @@
           </div>
         </div>
      </div>
-     <div class="upload container">
-     <input type="file" name="imageupload" id="file" accept="image/*" (change)="filehandler($event)">
-     <button type="button" name="uploadimage" (click)="uploadimage()">Upload</button>
-   </div>
+      <div class="upload container">
+
+     </div>
     <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+             </div>
+             <div class="modal-body">
+               <form [formGroup]="registerForm">
+                   <div class="sign-in">
+                       <div class="sign-in-header">
+                           <h1 class="text-center">Edit your information</h1>
+                           <p class="text-muted text-center">In order to save your changes we must check you are really you.</p>
+                       </div>
+                       <div class="sign-in-content">
+                           <div class="form-group">
+                               <label for="username" class="label-control">Name:</label>
+                               <input type="text" name="name" placeholder="Name" class="form-control" formControlName="name" autocomplete="off" value="{{currentUser.name}}">
+                           </div>
+                           <div class="form-group">
+                               <label for="email" class="label-control">Email:</label>
+                               <input type="email" name="email" placeholder="Email" class="form-control" formControlName="email" value="{{currentUser.mail}}">
+                           </div>
+                           <div class="form-group">
+                               <label for="username" class="label-control">City:</label>
+                               <input type="text" name="city" placeholder="City" class="form-control" formControlName="city" autocomplete="off" value="{{currentUser.city}}">
+                           </div>
+                           <div class="form-group">
+                               <label for="username" class="label-control">Password:</label>
+                               <input type="password" name="username" placeholder="Password" formControlName="password" class="form-control" >
+                           </div>
+                           <div class="form-group">
+                               <label for="username" class="label-control">Confirm Password:</label>
+                               <input type="password" name="username" placeholder="Repeat Password" formControlName="passwordConfirm" class="form-control" >
+                           </div>
+                       </div>
+                   </div>
+               </form>
+             </div>
+             <div class="modal-footer">
+               <button type="submit" name="button" class="btn btn-default" (click)="updateProfile()">Save</button>
+               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+             </div>
+           </div>
+
+         </div>
+    </div>
+    <div id="upload_img" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -95,33 +145,11 @@
                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
                    <div class="sign-in">
                        <div class="sign-in-header">
-                           <h1 class="text-center">Edit your information</h1>
+                           <h1 class="text-center">Upload an Image</h1>
                        </div>
-                       <div class="sign-in-content">
-                           <div class="form-group">
-                               <label for="username" class="label-control">Name:</label>
-                               <input type="text" name="name" placeholder="Name" class="form-control" autocomplete="off">
-                           </div>
-                           <div class="form-group">
-                               <label for="email" class="label-control">Email:</label>
-                               <input type="email" name="email" placeholder="Email" class="form-control">
-                           </div>
-                           <div class="form-group">
-                               <label for="username" class="label-control">City:</label>
-                               <input type="text" name="city" placeholder="City" class="form-control" autocomplete="off" >
-                           </div>
-                           <div class="form-group">
-                               <label for="username" class="label-control">Password:</label>
-                               <input type="password" name="username" placeholder="Password" formControlName="password" class="form-control" >
-                           </div>
-                           <div class="form-group">
-                               <label for="username" class="label-control">Confirm Password:</label>
-                               <input type="password" name="username" placeholder="Repeat Password" formControlName="passwordConfirm" class="form-control" >
-                           </div>
-                       </div>
-                       <div class="sign-in-footer">
-                           <button type="submit" name="editbtn" class="btn btn-primary">Save changes</button>
-                       </div>
+                       <input type="file" name="imageupload" id="file" accept="image/*" (change)="filehandler($event)">
+                       <button type="button" name="uploadimage" (click)="uploadimage()" class="btn btn-primary" style="margin-top:1rem;">Upload</button>
+
                    </div>
                </form>
              </div>

@@ -11,6 +11,8 @@ export class ImagesService {
 	constructor(private http: Http, private sessionService: SessionService){
 		this.headers = new Headers();
 		this.headers.append('Content-Type','application/json');
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
 	}
 
 	getAll(){
@@ -20,7 +22,7 @@ export class ImagesService {
 	addImage(image){
 		let body = {
 			image:image,
-			tattooistId: this.sessionService.getSession().tattooistId
+			tattooistId: this.currentUser.id
 		};
 		return this.http.post(this.serverURL + 'images/add', body, {headers:this.headers}).map(res => res.json());
 	}

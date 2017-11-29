@@ -55,12 +55,13 @@ exports.create = function(req,res) {
 exports.update = function(req, res) {
 	var cnt = 0;
 	var num = 0;
-	if(!!res.body.body.name) num += 1;
-	if(!!res.body.body.city) num += 1;
-	if(!!res.body.body.mail) num += 1;
-	if(!!res.body.body.password) num += 1;
+	console.log(req.body);
+	if(!!req.body.body.name) num += 1;
+	if(!!req.body.body.city) num += 1;
+	if(!!req.body.body.mail) num += 1;
+	if(!!req.body.body.password) num += 1;
 
-	if(!!res.body.body.name){
+	if(!!req.body.body.name){
 		db.get().query("UPDATE People SET name='" + req.body.body.name + "' WHERE personId=" + req.body.id,function(err,rows) {
 			if(err){
 				res.send({
@@ -77,7 +78,7 @@ exports.update = function(req, res) {
 			}
 		});
 	}
-	if(!!res.body.body.city){
+	if(!!req.body.body.city){
 		db.get().query("UPDATE People SET city='" + req.body.body.city + "' WHERE personId=" + req.body.id,function(err,rows) {
 			if(err){
 				res.send({
@@ -94,7 +95,7 @@ exports.update = function(req, res) {
 			}
 		});
 	}
-	if(!!res.body.body.mail){
+	if(!!req.body.body.mail){
 		db.get().query("UPDATE Users SET mail='" + req.body.body.mail + "' WHERE userId=" + req.body.uid,function(err,rows) {
 			if(err){
 				res.send({
@@ -111,7 +112,7 @@ exports.update = function(req, res) {
 			}
 		});
 	}
-	if(!!res.body.body.password){
+	if(!!req.body.body.password){
 		db.get().query("UPDATE Users SET password='" + req.body.body.password + "' WHERE userId="+ req.body.uid,function(err,rows) {
 			if(err){
 				res.send({

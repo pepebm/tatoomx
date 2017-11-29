@@ -1,5 +1,7 @@
 import {Component, OnInit } from "@angular/core";
 import {FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { PeopleService } from '../providers/people-service';
+
 
 @Component({
   selector: 'profile',
@@ -48,9 +50,34 @@ export class ProfileComponent {
   temp_studios = this.studios.slice(0,4);
   image: any;
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder, private peopleService: PeopleService){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log(this.currentUser);
     this.editForm = this.formBuilder.group({
+        password:['', Validators.required],
+        passwordConfirm:['', Validators.required]
+    });
+    this.registerForm = this.formBuilder.group({
+        name:['',
+          Validators.compose([
+            Validators.pattern('[a-zA-Z]*')
+          ])
+        ],
+        email:['',
+          Validators.compose([
+            Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}')
+          ])
+        ],
+        city:['',
+          Validators.compose([
+            Validators.pattern('[a-zA-Z]*')
+          ])
+        ],
+        phone:['',
+          Validators.compose([
+            Validators.pattern('[0-9- ]{8,22}$')
+          ])
+        ],
         password:['', Validators.required],
         passwordConfirm:['', Validators.required]
     });
@@ -93,5 +120,29 @@ export class ProfileComponent {
         console.log(e);
       }
     );
+  }
+
+  updateProfile(){
+    console.log("f");
+    if(this.registerForm.valid && this.registerForm.controls.password.value == this.registerForm.controls.passwordConfirm.value){
+      this.peopleService.update({
+        name: this.registerForm.controls.name.value,
+        mail: this.registerForm.controls.email.value,
+        city: this.registerForm.controls.city.value,
+        password: this.registerForm.controls.password.value
+      }).subscribe(
+        data => {
+          if(data.status > 2) {
+            console.log("Error");
+          } else {
+            console.log(data.message);
+          }
+
+        },
+        error => { console.log(error) }
+      );
+    } else {
+      console.log(this.registerForm.valid);
+    }
   }
 }
