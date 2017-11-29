@@ -76,85 +76,114 @@ exports.create = function(req,res){
 }
 
 exports.update = function(req, res) {
-	if(!!res.body.name){
-		db.get().query("UPDATE Tattooists SET name='" + req.body.name + "' WHERE tattooistId=" + req.body.id,function(err,rows) {
+	var cnt = 0;
+	var num = 0;
+	if(!!res.body.body.name) num += 1;
+	if(!!res.body.body.gender) num += 1;
+	if(!!res.body.body.city) num += 1;
+	if(!!res.body.body.phone) num += 1;
+	if(!!res.body.body.mail) num += 1;
+	if(!!res.body.body.password) num += 1;
+
+	if(!!res.body.body.name){
+		db.get().query("UPDATE Tattooists SET name='" + req.body.body.name + "' WHERE tattooistId=" + req.body.id,function(err,rows) {
 			if(err){
 				res.send({
 					status:2,
 					message:err
 				});
+			}
+			cnt += 1;
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
 			}
 		});
 	}
-	if(!!res.body.gender){
-		db.get().query("UPDATE Tattooists SET gender='" + req.body.gender + "' WHERE tattooistId="+ req.body.id,function(err,rows) {
+	if(!!res.body.body.gender){
+		db.get().query("UPDATE Tattooists SET gender='" + req.body.body.gender + "' WHERE tattooistId="+ req.body.id,function(err,rows) {
 			if(err){
 				res.send({
 					status:2,
 					message:err
 				});
+			}
+			cnt += 1;
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
 			}
 		});
 	}
-	if(!!res.body.city){
-		db.get().query("UPDATE Tattooists SET city='" + req.body.city + "' WHERE tattooistId=" + req.body.id,function(err,rows) {
+	if(!!res.body.body.city){
+		db.get().query("UPDATE Tattooists SET city='" + req.body.body.city + "' WHERE tattooistId=" + req.body.id,function(err,rows) {
 			if(err){
 				res.send({
 					status:2,
 					message:err
 				});
+			}
+			cnt += 1;
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
 			}
 		});
 	}
-	if(!!res.body.phone){
-		db.get().query("UPDATE Tattooists SET phone='" + req.body.phone + "' WHERE tattooistId="+ req.body.id,function(err,rows) {
+	if(!!res.body.body.phone){
+		db.get().query("UPDATE Tattooists SET phone='" + req.body.body.phone + "' WHERE tattooistId="+ req.body.id,function(err,rows) {
 			if(err){
 				res.send({
 					status:2,
 					message:err
 				});
+			}
+			cnt += 1;
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
 			}
 		});
 	}
-	if(!!res.body.mail){
-		db.get().query("SELECT * FROM Users u,Tattooists t WHERE u.userId=t.userId AND t.tattooistId="+req.body.id,function(err,rows) {
+	if(!!res.body.body.mail){
+		db.get().query("UPDATE Users SET mail='" + req.body.body.mail + "' WHERE userId=" + req.body.uid,function(err,rows) {
 			if(err){
 				res.send({
 					status:2,
 					message:err
 				});
 			}
-			else{
-				var uid = rows[0].userId;
-				db.get().query("UPDATE Users SET mail='" + req.body.mail + "' WHERE userId=" + uid,function(err,rows) {
-					if(err){
-						res.send({
-							status:2,
-							message:err
-						});
-					}
-				});
+			cnt += 1;
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
 			}
 		});
 	}
-	if(!!res.body.password){
-		db.get().query("SELECT * FROM Users u,Tattooists t WHERE u.userId=t.userId AND t.tattooistId="+req.body.id,function(err,rows){
+	if(!!res.body.body.password){
+		db.get().query("UPDATE Users SET password='" + req.body.body.password + "' WHERE userId="+ req.body.uid,function(err,rows) {
 			if(err){
 				res.send({
 					status:2,
 					message:err
 				});
 			}
-			else{
-				var uid;
-				db.get().query("UPDATE Users SET password='" + req.body.password + "' WHERE userId="+ uid,function(err,rows) {
-					if(err){
-						res.send({
-							status:2,
-							message:err
-						});
-					}
-				});
+			cnt += 1;
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
 			}
 		});
 	}

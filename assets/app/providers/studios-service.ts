@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class StudiosService {
 	private headers: any;
-	private serverURL: string = 'localhost:3000/';
+	private serverURL: string = 'http://localhost:3000/';
 
 	constructor(private http: Http){
 		this.headers = new Headers();

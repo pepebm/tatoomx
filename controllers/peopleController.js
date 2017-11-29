@@ -53,7 +53,99 @@ exports.create = function(req,res) {
 }
 
 exports.update = function(req, res) {
-	
+	var cnt = 0;
+	var num = 0;
+	if(!!res.body.body.name) num += 1;
+	if(!!res.body.body.gender) num += 1;
+	if(!!res.body.body.city) num += 1;
+	if(!!res.body.body.mail) num += 1;
+	if(!!res.body.body.password) num += 1;
+
+	if(!!res.body.body.name){
+		db.get().query("UPDATE People SET name='" + req.body.body.name + "' WHERE personId=" + req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+			cnt += 1
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
+			}
+		});
+	}
+	if(!!res.body.body.gender){
+		db.get().query("UPDATE People SET gender='" + req.body.body.gender + "' WHERE personId="+ req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+			cnt += 1
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
+			}
+		});
+	}
+	if(!!res.body.body.city){
+		db.get().query("UPDATE People SET city='" + req.body.body.city + "' WHERE personId=" + req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+			cnt += 1
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
+			}
+		});
+	}
+	if(!!res.body.body.mail){
+		db.get().query("UPDATE Users SET mail='" + req.body.body.mail + "' WHERE userId=" + req.body.uid,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+			cnt += 1
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
+			}
+		});
+	}
+	if(!!res.body.body.password){
+		db.get().query("UPDATE Users SET password='" + req.body.body.password + "' WHERE userId="+ req.body.uid,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+			cnt += 1
+			if(cnt == num){
+				res.send({
+					status:0,
+					message:"Success"
+				})
+			}
+		});
+	}
 }
 
 exports.getImages = function(req,res) {

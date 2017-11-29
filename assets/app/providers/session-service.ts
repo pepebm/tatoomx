@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SessionService {
 	private headers: any;
-	private serverURL: string = 'localhost:3000/';
+	private serverURL: string = 'http://localhost:3000/';
 	private session: any = null;
 
 	constructor(private http: Http){

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class PeopleService {
 	private headers: any;
-	private serverURL: string = 'localhost:3000/';
+	private serverURL: string = 'http://localhost:3000/';
 
 	constructor(private http: Http, private session: SessionService){
 		this.headers = new Headers();
@@ -15,6 +15,10 @@ export class PeopleService {
 
 	create(body){
 		return this.http.post(this.serverURL + 'people/register', body, {headers:this.headers}).map(res => res.json());
+	}
+
+	update(body){
+		return this.http.post(this.serverURL + 'people/update', {body:body, id:this.sessionService.getSession().id, uid:this.sessionService.getSession().userId}, {headers: this.headers}).map(res => res.json());
 	}
 
 	getImages(){
