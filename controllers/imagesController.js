@@ -1,7 +1,6 @@
 var db = require('../db.js');
 var Image = require('../models/image');
 var fs = require('fs');
-//var path = require('path'); //path.resolve(image) // IF FORBIDEN ERROR
 
 exports.getAll = function(req,res) {
 	db.get().query('SELECT imageId FROM LikesImages WHERE personId='+req.params.id,function(e,r){
@@ -27,7 +26,7 @@ exports.getAll = function(req,res) {
 						data.push(new Image(rows[i].imageId, rows[i].imageblob.toString('utf8'), rows[i].created_at, rows[i].tattooistId));
 					}
 					for (var i = 0; i < data.length; i++) {
-						if(data[i].id in liked) data[i].liked = true;
+						if(liked.indexOf(data[i].id) > -1) data[i].liked = true;
 						else data[i].liked = false;
 					}
 					response.status = 0;
