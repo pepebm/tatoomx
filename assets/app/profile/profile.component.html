@@ -29,79 +29,79 @@
 
    </div> <!-- close container div -->
  </nav> <!-- close navbar nav -->
- <div class="jumbotron" id="header"></div>
- <div class="container container-img">
-    <div class="therow">
-       <div class="thecol-6">
-          <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt="profile_img" class="img-responsive center-block profile-img">
-          <h3 class="profile-name">Profile Name</h3>
-          <div class="thecol-6">
-             <a class="btn btn-primary center-block" data-toggle="modal" data-target="#myModal" style="width:25%"> <fa name="user"></fa> Edit Profile </a>
-          </div>
-       </div>
-    </div>
- </div>
- <div class="container">
-    <div class="therow">
-       <div class="thecol-3 my-images">
-          <h2 style="text-align:center;">My Images</h2>
-          <div class="therow">
-             <div *ngFor="let img of temp" class="thecol-3">
-                <div class="card">
-                    <div class="card-block">
-                       <img src="{{img.src}}" alt="img" class="img">
-                    </div>
-               </div>
-            </div>
-            <div class="thecol-6">
-               <div *ngIf="temp.length == 4">
-                  <button type="button" name="show_more" class="btn btn-primary center-block" (click)="showMore()">Show all</button>
-               </div>
-               <div *ngIf="temp.length > 4">
-                  <button type="button" name="show_less" class="btn btn-primary center-block" (click)="showLess()">Show Less</button>
-               </div>
-            </div>
-         </div>
-
-       </div>
-       <div class="thecol-3 my-studios">
-          <h2 style="text-align:center;">My Artists & Studios</h2>
-          <div class="therow">
-             <div *ngFor="let img of temp_studios" class="thecol-3">
-                <div class="card">
-                    <div class="card-block">
-                       <img src="{{img.src}}" alt="img" class="img">
-                    </div>
-               </div>
-            </div>
-            <div class="thecol-6">
-               <div *ngIf="temp_studios.length == 4">
-                  <button type="button" name="show_more" class="btn btn-primary center-block" (click)="showMoreStudios()">Show all</button>
-               </div>
-               <div *ngIf="temp_studios.length > 4">
-                  <button type="button" name="show_less" class="btn btn-primary center-block" (click)="showLessStudios()">Show Less</button>
-               </div>
-            </div>
-         </div>
-       </div>
-    </div>
-   <div id="myModal" class="modal fade" role="dialog">
-     <div class="modal-dialog">
-
-       <!-- Modal content-->
-       <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-              <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+  <div class="jumbotron" id="header"></div>
+  <div class="container container-img">
+     <div class="therow">
+        <div class="thecol-6">
+           <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" alt="profile_img" class="img-responsive center-block profile-img">
+           <h3 class="profile-name">Profile Name</h3>
+           <div class="thecol-6">
+              <a class="btn btn-primary center-block" data-toggle="modal" data-target="#myModal" style="width:25%"> <fa name="user"></fa> Edit Profile </a>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="container">
+     <div class="therow">
+        <div class="thecol-3 my-images">
+           <h2 style="text-align:center;">My Images</h2>
+           <div class="therow">
+              <div *ngFor="let img of temp" class="thecol-3">
+                 <div class="card">
+                     <div class="card-block">
+                        <img src="{{img.src}}" alt="img" class="img img-responsive">
+                     </div>
+                </div>
+             </div>
+             <div class="thecol-6">
+                <div *ngIf="temp.length == 4">
+                   <button type="button" name="show_more" class="btn btn-primary center-block" (click)="showMore()">Show all</button>
+                </div>
+                <div *ngIf="temp.length > 4">
+                   <button type="button" name="show_less" class="btn btn-primary center-block" (click)="showLess()">Show Less</button>
+                </div>
+             </div>
           </div>
 
         </div>
-   </div>
- </div>
+        <div class="thecol-3 my-studios">
+           <h2 style="text-align:center;">My Artists & Studios</h2>
+           <div class="therow">
+              <div *ngFor="let img of temp_studios" class="thecol-3">
+                 <div class="card">
+                     <div class="card-block">
+                        <img src="{{img.src}}" alt="img" class="img img-responsive">
+                     </div>
+                </div>
+             </div>
+             <div class="thecol-6">
+                <div *ngIf="temp_studios.length == 4">
+                   <button type="button" name="show_more" class="btn btn-primary center-block" (click)="showMoreStudios()">Show all</button>
+                </div>
+                <div *ngIf="temp_studios.length > 4">
+                   <button type="button" name="show_less" class="btn btn-primary center-block" (click)="showLessStudios()">Show Less</button>
+                </div>
+             </div>
+          </div>
+        </div>
+     </div>
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Modal Header</h4>
+             </div>
+             <div class="modal-body">
+               <p>Some text in the modal.</p>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+           </div>
+
+         </div>
+    </div>
+  </div>

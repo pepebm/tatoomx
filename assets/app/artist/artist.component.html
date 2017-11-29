@@ -32,10 +32,7 @@
 
 
  <div class="container">
-    <div class="form-group">
-       <label for="search">Search for an artist:</label>
-       <input type="text" class="form-control" id="search">
-    </div>
+
    <div class="therow">
       <div *ngFor="let card of data" class="thecol-2">
           <div class="card" style="width: 20rem;">
@@ -48,5 +45,32 @@
          </div>
       </div>
    </div>
+   <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#both">Studio & Independant Artists</a></li>
+    <li><a data-toggle="tab" href="#menu1">Studio Artist</a></li>
+    <li><a data-toggle="tab" href="#menu2">Independant Artist</a></li>
+  </ul>
+
+<div class="tab-content">
+  <div id="both" class="tab-pane fade in active">
+    <div class="form-group">
+       <label for="search">Search for an artist:</label>
+       <input type="text" class="form-control" id="search_both">
+    </div>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <div class="form-group">
+       <label for="search">Search for an artist:</label>
+       <input type="text" class="form-control" id="search_studio">
+    </div>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    <div class="form-group">
+       <label for="search">Search for an artist:</label>
+       <input type="text" class="form-control" id="search_inde">
+    </div>
+  </div>
+</div>
+
 
 </div>
