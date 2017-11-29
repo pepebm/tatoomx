@@ -12,12 +12,12 @@ import { SessionService } from '../providers/session-service';
 export class ArtistComponent {
   currentUser: any;
   artists: any;
-  independant: any = [];
+  independent: any = [];
   studio: any = [];
   image: any = [];
   constructor(private sessionService: SessionService, private artistsService: TattooistsService){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-   
+
     this.artistsService.getAll().subscribe(
       data => {
         //console.log(data);
@@ -32,7 +32,7 @@ export class ArtistComponent {
             if(this.artists[i].studioId){
               this.studio.push(this.artists[i]);
             } else{
-              this.independant.push(this.artists[i]);
+              this.independent.push(this.artists[i]);
             }
           }
         }
