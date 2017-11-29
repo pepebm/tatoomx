@@ -1,6 +1,9 @@
 import {Component, OnInit } from "@angular/core";
 import {FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { PeopleService } from '../providers/people-service';
+import { TattooistsService } from '../providers/tattooists-service';
+import { ImagesService } from '../providers/images-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -50,7 +53,7 @@ export class ProfileComponent {
   temp_studios = this.studios.slice(0,4);
   image: any;
 
-  constructor(private formBuilder: FormBuilder, private peopleService: PeopleService){
+  constructor(private formBuilder: FormBuilder, private peopleService: PeopleService, private imagesService: ImagesService, private tattooistsService: TattooistsService, private router: Router){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     console.log(this.currentUser);
     this.editForm = this.formBuilder.group({
@@ -123,25 +126,53 @@ export class ProfileComponent {
   }
 
   updateProfile(){
-    console.log("f");
     if(this.registerForm.valid && this.registerForm.controls.password.value == this.registerForm.controls.passwordConfirm.value){
-      this.peopleService.update({
-        name: this.registerForm.controls.name.value,
-        mail: this.registerForm.controls.email.value,
-        city: this.registerForm.controls.city.value,
-        password: this.registerForm.controls.password.value
-      }).subscribe(
-        data => {
-          if(data.status > 2) {
-            console.log("Error");
-          } else {
-            console.log(data.message);
-          }
+      let body = {};
+      if(!!this.registerForm.controls.name.value && this.registerForm.controls.name.value.trim() != '') body.name = this.registerForm.controls.name.value;
+      if(!!this.registerForm.controls.email.value && this.registerForm.controls.email.value.trim() != '') body.mail = this.registerForm.controls.email.value;
+      if(!!this.registerForm.controls.city.value && this.registerForm.controls.city.value.trim() != '') body.city = this.registerForm.controls.city.value;
+      if(!!this.registerForm.controls.password.value && this.registerForm.controls.password.value.trim() != '') body.password = this.registerForm.controls.password.value;
 
-        },
-        error => { console.log(error) }
-      );
-    } else {
+      if(this.currentUser.type = 'tattooist'){
+        this.tattooistsService.update(body).subscribe(
+          data => {
+            if(data.status >= 2) {
+              console.log("Error");
+            } else {
+              console.log(data);
+              if(!!body.name) this.currentUser.name = body.name;
+              if(!!body.mail) this.currentUser.mail = body.mail;
+              if(!!body.city) this.currentUser.city = body.city;
+              if(!!body.password) this.currentUser.password = body.password;
+              localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+              this.router.navigate(['profile']);
+            }
+
+          },
+          error => { console.log(error) }
+        );
+      }
+      else{
+        this.peopleService.update(body).subscribe(
+          data => {
+            if(data.status >= 2) {
+              console.log("Error");
+            } else {
+              console.log(data);
+              if(!!body.name) this.currentUser.name = body.name;
+              if(!!body.mail) this.currentUser.mail = body.mail;
+              if(!!body.city) this.currentUser.city = body.city;
+              if(!!body.password) this.currentUser.password = body.password;
+              localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+              this.router.navigate(['profile']);
+            }
+
+          },
+          error => { console.log(error) }
+        );
+      }
+    } 
+    else {
       console.log(this.registerForm.valid);
     }
   }

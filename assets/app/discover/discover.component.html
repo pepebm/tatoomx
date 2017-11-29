@@ -37,10 +37,10 @@
              <h4 class="card-title">{{card.name}}</h4>
              <a class="btn btn-primary" *ngIf="currentUser.type == 'person'">
                <div *ngIf="card.liked == true">
-                 <fa name="heart" (click)="disliked(card.id)"></fa>
+                 <fa name="heart" (click)="disliked(card)"></fa>
                </div>
                <div *ngIf="card.liked == false">
-                 <fa name="heart-o" (click)="liked(card.id)"></fa>
+                 <fa name="heart-o" (click)="liked(card)"></fa>
                </div>
              </a>
             </div>

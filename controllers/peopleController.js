@@ -55,7 +55,6 @@ exports.create = function(req,res) {
 exports.update = function(req, res) {
 	var cnt = 0;
 	var num = 0;
-	console.log(req.body);
 	if(!!req.body.body.name) num += 1;
 	if(!!req.body.body.city) num += 1;
 	if(!!req.body.body.mail) num += 1;

@@ -29,12 +29,13 @@ export class DiscoverComponent {
 		);
 	}
 
-	liked(id){
-		this.peopleService.likeImage(id).subscribe(
+	liked(image){
+		this.peopleService.likeImage(image.id).subscribe(
 			data => {
 				if(data.status >= 2){
 					console.log("Error");
 				} else {
+					image.liked = true;
 					console.log(data);
 				}
 			},
@@ -43,12 +44,13 @@ export class DiscoverComponent {
 			}
 		);
 	}
-	disliked(id){
-		this.peopleService.dislikeImage(id).subscribe(
+	disliked(image){
+		this.peopleService.dislikeImage(image.id).subscribe(
 			data => {
 				if(data.status >= 2){
 					console.log("Error");
 				} else {
+					image.liked = false;
 					console.log(data);
 				}
 			},

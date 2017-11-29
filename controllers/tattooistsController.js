@@ -94,6 +94,7 @@ exports.update = function(req, res) {
 	if(!!req.body.body.phone) num += 1;
 	if(!!req.body.body.mail) num += 1;
 	if(!!req.body.body.password) num += 1;
+	console.log(req.body);
 	console.log(num);
 	if(!!req.body.body.name){
 		db.get().query("UPDATE Tattooists SET name='" + req.body.body.name + "' WHERE tattooistId=" + req.body.id,function(err,rows) {
