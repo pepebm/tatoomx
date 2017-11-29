@@ -32,6 +32,10 @@
   height: 150px;
 }
 
+.profile-name{
+  text-align: center;
+}
+
 .jumbotron{
   min-height: 30vh;
   z-index: -1;
@@ -42,4 +46,17 @@
   position: static;
   margin-top: -12rem;
 
+}
+
+.my-images img{
+  width: 100%;
+  height: 100%;
+}
+.my-studios img{
+  width: 100%;
+  height: 100%;
+}
+
+.my-images h2{
+  padding-left: 3rem;
 }
