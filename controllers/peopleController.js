@@ -52,6 +52,10 @@ exports.create = function(req,res) {
 	});
 }
 
+exports.update = function(req, res) {
+	
+}
+
 exports.getImages = function(req,res) {
 	db.get().query("SELECT * FROM Images i,People p,LikesImages l WHERE l.personId=p.personId AND l.imageId=i.imageId AND p.personId="+req.params.id,function(err,rows) {
 		var response = {};

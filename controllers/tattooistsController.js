@@ -75,6 +75,91 @@ exports.create = function(req,res){
 	});
 }
 
+exports.update = function(req, res) {
+	if(!!res.body.name){
+		db.get().query("UPDATE Tattooists SET name='" + req.body.name + "' WHERE tattooistId=" + req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+		});
+	}
+	if(!!res.body.gender){
+		db.get().query("UPDATE Tattooists SET gender='" + req.body.gender + "' WHERE tattooistId="+ req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+		});
+	}
+	if(!!res.body.city){
+		db.get().query("UPDATE Tattooists SET city='" + req.body.city + "' WHERE tattooistId=" + req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+		});
+	}
+	if(!!res.body.phone){
+		db.get().query("UPDATE Tattooists SET phone='" + req.body.phone + "' WHERE tattooistId="+ req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+		});
+	}
+	if(!!res.body.mail){
+		db.get().query("SELECT * FROM Users u,Tattooists t WHERE u.userId=t.userId AND t.tattooistId="+req.body.id,function(err,rows) {
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+			else{
+				var uid = rows[0].userId;
+				db.get().query("UPDATE Users SET mail='" + req.body.mail + "' WHERE userId=" + uid,function(err,rows) {
+					if(err){
+						res.send({
+							status:2,
+							message:err
+						});
+					}
+				});
+			}
+		});
+	}
+	if(!!res.body.password){
+		db.get().query("SELECT * FROM Users u,Tattooists t WHERE u.userId=t.userId AND t.tattooistId="+req.body.id,function(err,rows){
+			if(err){
+				res.send({
+					status:2,
+					message:err
+				});
+			}
+			else{
+				var uid;
+				db.get().query("UPDATE Users SET password='" + req.body.password + "' WHERE userId="+ uid,function(err,rows) {
+					if(err){
+						res.send({
+							status:2,
+							message:err
+						});
+					}
+				});
+			}
+		});
+	}
+}
+
 exports.getImages = function(req,res) {
 	db.get().query("SELECT * FROM Images WHERE tattooistId="+req.params.id, function(err,rows) {
 		var response = {};

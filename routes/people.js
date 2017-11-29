@@ -14,5 +14,6 @@ router.post('/disliketattooist',peopleController.deleteLikeTattooist);
 router.post('/dislikestudio',peopleController.deleteLikeStudio);
 
 router.post('/register', peopleController.create);
+router.post('/update',peopleController.update);
 
 module.exports = router;
