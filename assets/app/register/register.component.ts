@@ -46,44 +46,48 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.isTattooist){
-      this.tattooistService.create(this.registerForm.controls.name.value,
-                                  this.registerForm.controls.email.value,
-                                  this.registerForm.controls.city.value,
-                                  this.registerForm.controls.sex.value,
-                                  this.registerForm.controls.phone.value,
-                                  this.registerForm.controls.password.value,
-                                  this.registerForm.controls.passwordConfirm.value).subscribe(
-        data => {
-          if(data.status >= 2) { console.log("Error"); }
-          else {
-            console.log(data)
+    if(this.registerForm.valid && this.registerForm.controls.password.value == this.registerForm.controls.passwordConfirm.value) {
+      if(this.isTattooist){
+        this.tattooistService.create({
+                                  name: this.registerForm.controls.name.value,
+                                  mail: this.registerForm.controls.email.value,
+                                  city: this.registerForm.controls.city.value,
+                                  gender: this.registerForm.controls.sex.value,
+                                  phone: this.registerForm.controls.phone.value,
+                                  password: this.registerForm.controls.password.value,
+                                  }).subscribe(
+          data => {
+            if(data.status >= 2) { console.log(data.message); }
+            else {
+              console.log(data)
+              this.router.navigate(['login']);
+            }
+          },
+          error => {
+            console.log(error)
           }
-        },
-        error => {
-          console.log(error)
-        }
-      );
-    } else {
-      this.peopleService.create({
-                                name: this.registerForm.controls.name.value,
-                                mail: this.registerForm.controls.email.value,
-                                city: this.registerForm.controls.city.value,
-                                gender: this.registerForm.controls.sex.value,
-                                phone: this.registerForm.controls.phone.value,
-                                password: this.registerForm.controls.password.value,
-                                passwordConfirm: this.registerForm.controls.passwordConfirm.value}).subscribe(
-        data => {
-          if(data.status >= 2) { console.log("Error"); }
-          else {
-            console.log(data)
+        );
+      } else {
+        this.peopleService.create({
+                                  name: this.registerForm.controls.name.value,
+                                  mail: this.registerForm.controls.email.value,
+                                  city: this.registerForm.controls.city.value,
+                                  gender: this.registerForm.controls.sex.value,
+                                  password: this.registerForm.controls.password.value,
+                                  }).subscribe(
+          data => {
+            if(data.status >= 2) { console.log("Error"); }
+            else {
+              console.log(data)
+            }
+          },
+          error => {
+            console.log(error)
           }
-        },
-        error => {
-          console.log(error)
-        }
-      );
+        );
+      }
     }
+
   }
 
   toggle(state){

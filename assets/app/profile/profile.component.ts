@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ['./profile.component.css', '../app.component.css']
 })
 export class ProfileComponent {
+  currentUser: any;
   registerForm: FormGroup;
   images: any[] = [
     {
@@ -48,6 +49,7 @@ export class ProfileComponent {
   image: any;
 
   constructor(private formBuilder: FormBuilder){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.editForm = this.formBuilder.group({
         password:['', Validators.required],
         passwordConfirm:['', Validators.required]

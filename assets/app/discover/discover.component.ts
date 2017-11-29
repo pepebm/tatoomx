@@ -9,10 +9,13 @@ import { PeopleService } from '../providers/people-service';
   styleUrls: ['./discover.component.css', '../app.component.css']
 })
 export class DiscoverComponent {
+	currentUser: any;
   images: any = [];
 	constructor(private sessionService: SessionService, private imagesService: ImagesService, private peopleService: PeopleService){
 		this.getImages();
-		console.log(this.sessionService.getSession());
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+		console.log(this.currentUser);
+		//console.log(this.sessionService.getSession());
 	}
 
 	getImages(){
