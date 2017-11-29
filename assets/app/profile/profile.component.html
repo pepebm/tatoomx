@@ -79,6 +79,10 @@
           </div>
         </div>
      </div>
+     <div class="upload container">
+     <input type="file" name="imageupload" id="file" accept="image/*" (change)="filehandler($event)">
+     <button type="button" name="uploadimage" (click)="uploadimage()">Upload</button>
+   </div>
     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 

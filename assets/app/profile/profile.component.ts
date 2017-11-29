@@ -70,11 +70,6 @@ export class ProfileComponent {
     this.temp_studios = this.studios.slice(0,4);
   }
 
-  /*
-<input type="file" name="imageupload" id="file" accept="image/*" (change)="filehandler($event)">
-<button type="button" name="uploadimage" (click)="uploadimage()">Upload</button>
-*/
-
   filehandler(event){
     var selectedFile = event.target.files[0];
     var reader = new FileReader();

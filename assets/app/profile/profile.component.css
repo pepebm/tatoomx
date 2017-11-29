@@ -60,3 +60,10 @@
 .my-images h2{
   padding-left: 3rem;
 }
+
+.upload {
+  margin-left: 40%;
+  margin-right: auto;
+  width: 1em;
+  padding-bottom: 2.5em;
+}
