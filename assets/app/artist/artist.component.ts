@@ -17,11 +17,11 @@ export class ArtistComponent {
   image: any = [];
   constructor(private sessionService: SessionService, private artistsService: TattooistsService){
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log("HOLA");
     this.artistsService.getAll().subscribe(
       data => {
         //console.log(data);
         if(data.status >= 2){
-          console.log("Error");
         }
         else {
           this.artists = data.data;
@@ -41,7 +41,6 @@ export class ArtistComponent {
         console.log(error);
       }
     );
-
   }
 
   loadImages(id){

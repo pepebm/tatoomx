@@ -18,7 +18,7 @@ export class TattooistsService {
 	}
 
 	getAll(){
-		return this.http.get(this.serverURL + 'tattooists/',{headers: this.headers}).map(res => res.json());
+		return this.http.get(this.serverURL + 'tattooists/' + this.sessionService.getSession().personId,{headers: this.headers}).map(res => res.json());
 	}
 
 	getImages(tattooistId){
