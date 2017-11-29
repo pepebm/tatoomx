@@ -5,7 +5,6 @@ import { TattooistsService } from '../providers/tattooists-service';
 import { ImagesService } from '../providers/images-service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',

@@ -8,3 +8,11 @@
   padding: 10px;
   margin-bottom: 2rem;
 }
+
+.modal-body p{
+  border-bottom: 1px grey solid;
+}
+
+.pull-right {
+  float:left!important;
+}
