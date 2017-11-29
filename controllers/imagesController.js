@@ -9,7 +9,7 @@ exports.getAll = function(req,res) {
 		var liked = [];
 		if(e){
 			response.status = 2;
-			response.message = err;
+			response.message = e;
 			res.send(response);
 		}
 		else{
@@ -24,12 +24,12 @@ exports.getAll = function(req,res) {
 				}
 				else{
 					for (var i = 0; i < rows.length; i++) {
-						data.push(new Image(rows[i].imageId, rows[i].imageblob, rows[i].created_at, rows[i].tattooistId));
+						data.push(new Image(rows[i].imageId, rows[i].imageblob.toString('utf8'), rows[i].created_at, rows[i].tattooistId));
 					}
-					data.forEach(image => {
-						if(image.imageId in liked) image.liked = true;
-						else liked = false;
-					});
+					for (var i = 0; i < data.length; i++) {
+						if(data[i].id in liked) data[i].liked = true;
+						else data[i].liked = false;
+					}
 					response.status = 0;
 					response.message = 'Success';
 					response.data = data;
@@ -43,9 +43,6 @@ exports.getAll = function(req,res) {
 exports.add = function(req,res) {
 	var b64 = req.body.image;
 	var img = b64.substring(b64.indexOf(",") + 1);
-	console.log("---");
-	console.log(req.body.image);
-	console.log("---");
 	var created_at = new Date();
 	created_at = created_at.getFullYear().toString() + created_at.getMonth() + created_at.getDate() + created_at.getHours() + created_at.getMinutes() + created_at.getSeconds();
 	

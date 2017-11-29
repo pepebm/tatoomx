@@ -3,28 +3,39 @@ var Tattooist = require('../models/tattooist');
 var Image = require('../models/image');
 
 exports.getAll = function(req,res){
-	db.get().query('SELECT * FROM Tattooists', function(err,rows) {
+	db.get().query('SELECT tattooistId FROM LikesTattooists WHERE personId='+req.params.id,function(e,r){
 		var response = {};
-		var data = [];
-		if(err){
+		var liked = [];
+		if(e){
 			response.status = 2;
-			response.message = err;
+			response.message = e;
+			res.send(response);
 		}
 		else{
-			if(rows && rows.length > 0){
-				for(var i=0;i<rows.length;i++){
-					data.push(new Tattooist(rows[i].tattooistId,rows[i].name,rows[i].gender,rows[i].city,rows[i].userId,rows[i].studioId,rows[i].phone));
+			for (var i = 0; i < r.length; i++) {
+				liked.push(r[i].imageId);
+			}
+			db.get().query('SELECT * FROM Tattooists', function(err,rows) {
+				var data = [];
+				if(err){
+					response.status = 2;
+					response.message = err;
 				}
-				response.status = 0;
-				response.message = 'Success';
-			}
-			else{
-				response.status = 1;
-				response.message = 'No tattooists found.';
-			}
-			response.data = data;
+				else{
+					for(var i=0;i<rows.length;i++){
+						data.push(new Tattooist(rows[i].tattooistId,rows[i].name,rows[i].gender,rows[i].city,rows[i].userId,rows[i].studioId,rows[i].phone));
+					}
+					for (var i = 0; i < data.length; i++) {
+						if(data[i].id in liked) data[i].liked = true;
+						else data[i].liked = false;
+					}
+					response.status = 0;
+					response.message = 'Success';
+					response.data = data;
+				}
+				res.send(response);
+			});
 		}
-		res.send(response);
 	});
 }
 
@@ -182,7 +193,7 @@ exports.getImages = function(req,res) {
 		else{
 			if(rows && rows.length > 0){
 				for (var i = 0; i < rows.length; i++) {
-					data.push(new Image(rows[i].imageId, rows[i].imageblob, rows[i].created_at, rows[i].tattooistId));
+					data.push(new Image(rows[i].imageId, rows[i].imageblob.toString('utf8'), rows[i].created_at, rows[i].tattooistId));
 				}
 				response.status = 0;
 				response.message = 'Success';

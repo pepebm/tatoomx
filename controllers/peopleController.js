@@ -140,7 +140,7 @@ exports.getImages = function(req,res) {
 		}
 		else{
 			for (var i = 0; i < rows.length; i++) {
-				data.push(new Image(rows[i].imageId, rows[i].imageblob, rows[i].created_at, rows[i].tattooistId));
+				data.push(new Image(rows[i].imageId, rows[i].imageblob.toString('utf8'), rows[i].created_at, rows[i].tattooistId));
 			}
 			response.status = 0;
 			response.message = "Success";
