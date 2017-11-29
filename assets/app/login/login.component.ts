@@ -17,14 +17,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.myForm.valid){
-      console.log(this.myForm.controls.type.value)
       this.sessionService.login(this.myForm.controls.mail.value,this.myForm.controls.password.value,(this.myForm.controls.type.value ? 'tattooist' : 'person')).subscribe(
         data => {
-          console.log(this.sessionService.getSession());
-          if(data){
+          if(data.data){
+            // GO TO DISCOVER, at this point this.sessionService.getSession() has an object
+            console.log(this.sessionService.getSession());
           }
           else{
-            //CANT LOGGIN
+            // OPEN MODAL, modal text = data.err
+            console.log(data.err);
           }
         },
         err=>{

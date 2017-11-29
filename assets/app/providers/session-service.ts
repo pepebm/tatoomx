@@ -20,20 +20,18 @@ export class SessionService {
 			password: password,
 			type: type
 		}
-		return new Observable<boolean>(observer => {
+		return new Observable<Object>(observer => {
 			this.http.post('http://localhost:3000/login', body, {headers: this.headers}).map(res => res.json()).subscribe(
 				data => {
 					if(data.status == 0){
 						this.session = data.data;
 						this.session.mail = mail;
 						this.session.type = type;
-						observer.next(true);
+						observer.next({data:true});
 						observer.complete();
 					}
 					else{
-						console.log(data.message);
-						//HANDLE ERROR
-						observer.next(false); 
+						observer.next({data:false,err:data.message}); 
 						observer.complete();
 					}
 				},
