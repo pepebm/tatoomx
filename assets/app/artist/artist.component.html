@@ -27,9 +27,9 @@
 
  <div class="container">
    <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#both">Studio & Independant Artists</a></li>
+    <li class="active"><a data-toggle="tab" href="#both">Studio & Independent Artists</a></li>
     <li><a data-toggle="tab" href="#menu1">Studio Artist</a></li>
-    <li><a data-toggle="tab" href="#menu2">Independant Artist</a></li>
+    <li><a data-toggle="tab" href="#menu2">Independent Artist</a></li>
   </ul>
 
   <div class="tab-content">
@@ -161,7 +161,7 @@
          <label for="search">Search for an artist:</label>
          <input type="text" class="form-control" id="search_inde" [(ngModel)]="search_inde" placeholder="Name">
          <div class="therow">
-            <div *ngFor="let card of independant | searchfilter: 'name' : search_inde" class="thecol-6">
+            <div *ngFor="let card of independent | searchfilter: 'name' : search_inde" class="thecol-6">
                 <div class="card">
                  <div class="card-block">
                    <h4 class="card-title">{{card.name}}</h4>
