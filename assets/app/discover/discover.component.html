@@ -32,7 +32,7 @@
    <div class="therow">
       <div *ngFor="let card of images | searchfilter: 'name' : search" class="thecol-6">
           <div class="card">
-           <img class="card-img-top" src="{{card.imageblob}}" alt="Card image cap">
+           <img class="card-img-top" src="{{card.image}}" alt="Card image cap">
            <div class="card-block">
              <h4 class="card-title">{{card.name}}</h4>
              <a class="btn btn-primary">
