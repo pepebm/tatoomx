@@ -10,12 +10,13 @@ import { SessionService } from '../providers/session-service';
 })
 
 export class ArtistComponent {
-
+  currentUser: any;
   artists: any;
   independant: any = [];
   studio: any = [];
   image: any = [];
   constructor(private sessionService: SessionService, private artistsService: TattooistsService){
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.artistsService.getAll().subscribe(
       data => {
         //console.log(data);

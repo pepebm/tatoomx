@@ -28,6 +28,7 @@ export class SessionService {
 						this.session.mail = mail;
 						this.session.type = type;
 						observer.next({data:true});
+						localStorage.setItem('currentUser', JSON.stringify(this.session));
 						observer.complete();
 					}
 					else{
