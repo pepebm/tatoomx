@@ -2,7 +2,6 @@ import {Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { SessionService } from '../providers/session-service';
 import { Router } from '@angular/router';
-import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 import { ImagesService } from '../providers/images-service';
 
 @Component({
