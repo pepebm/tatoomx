@@ -17,6 +17,7 @@ import { ImagesService } from './providers/images-service';
 import { TattooistsService } from './providers/tattooists-service';
 import { PeopleService } from './providers/people-service';
 import { StudiosService } from './providers/studios-service';
+import { SearchFilterPipe } from './pipes/search.pipe';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { StudiosService } from './providers/studios-service';
         DiscoverComponent,
         ArtistComponent,
         StudioComponent,
-        ProfileComponent
+        ProfileComponent,
+        SearchFilterPipe
     ],
     imports: [
       BrowserModule,

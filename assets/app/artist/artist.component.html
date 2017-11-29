@@ -55,16 +55,54 @@
   <div id="both" class="tab-pane fade in active">
     <div class="form-group">
        <label for="search">Search for an artist:</label>
-       <input type="text" class="form-control" id="search_both">
+       <input type="text" class="form-control" id="search_both" [(ngModel)]="search">
        <div class="therow">
-          <div *ngFor="let card of artists" class="thecol-6">
-              <div class="card" style="width: 20rem;">
+          <div *ngFor="let card of artists | searchfilter: 'name' : search" class="thecol-6">
+              <div class="card">
                <div class="card-block">
                  <h4 class="card-title">{{card.name}}</h4>
                  <h6 class="card-subtitle mb-2 text-muted">{{card.city}}</h6>
-                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. hola</p>
-                 <a href="#" class="btn btn-primary">Go somewhere</a>
+                 <a data-toggle="modal" data-target="#info_modal" class="btn btn-primary">More info</a>
+                 <a data-toggle="modal" data-target="#img_modal" class="btn btn-primary">View images</a>
                </div>
+             </div>
+             <div id="info_modal" class="modal fade" role="dialog">
+               <div class="modal-dialog">
+
+                 <!-- Modal content-->
+                 <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Information</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>{{card.gender}}</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
+             </div>
+             <div id="img_modal" class="modal fade" role="dialog">
+               <div class="modal-dialog">
+
+                 <!-- Modal content-->
+                 <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Information</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+
+                  </div>
              </div>
           </div>
        </div>

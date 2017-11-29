@@ -2,3 +2,9 @@
   width: 33.3333%;
   text-align: center;
 }
+
+.card {
+  border: 1px rgb(106, 99, 100) solid;
+  padding: 10px;
+  margin-bottom: 2rem;
+}
