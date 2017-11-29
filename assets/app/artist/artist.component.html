@@ -56,6 +56,18 @@
     <div class="form-group">
        <label for="search">Search for an artist:</label>
        <input type="text" class="form-control" id="search_both">
+       <div class="therow">
+          <div *ngFor="let card of artists" class="thecol-6">
+              <div class="card" style="width: 20rem;">
+               <div class="card-block">
+                 <h4 class="card-title">{{card.name}}</h4>
+                 <h6 class="card-subtitle mb-2 text-muted">{{card.city}}</h6>
+                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. hola</p>
+                 <a href="#" class="btn btn-primary">Go somewhere</a>
+               </div>
+             </div>
+          </div>
+       </div>
     </div>
   </div>
   <div id="menu1" class="tab-pane fade">
