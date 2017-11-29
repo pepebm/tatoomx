@@ -7,11 +7,15 @@ import { TattooistsService } from '../providers/tattooists-service';
   templateUrl: './artist.component.html',
   styleUrls: ['./artist.component.css', '../app.component.css']
 })
+
 export class ArtistComponent {
 
   artists: any;
   independant: any = [];
   studio: any = [];
+  search_both: any:
+  search_studio: any;
+  search_inde: any;
   constructor(private artistsService: TattooistsService){
     this.artistsService.getAll().subscribe(
       data => {
@@ -37,6 +41,7 @@ export class ArtistComponent {
         console.log(error);
       }
     );
+
   }
 
 

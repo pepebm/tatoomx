@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <div class="sign-in">
                     <div class="sign-in-header">
                         <h1 class="text-center">Register</h1>
@@ -11,20 +11,54 @@
                     </div>
                     <div class="sign-in-content">
                         <div class="form-group">
-                            <label for="username" class="label-control">Username:</label>
-                            <input type="text" name="username" placeholder="Username" class="form-control" formControlName="username" autocomplete="off" >
+                            <label for="username" class="label-control">Name:</label>
+                            <input type="text" name="name" placeholder="Name" class="form-control" formControlName="name" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="email" class="label-control">Email:</label>
                             <input type="email" name="email" placeholder="Email" class="form-control" formControlName="email">
                         </div>
                         <div class="form-group">
+                            <label for="username" class="label-control">City:</label>
+                            <input type="text" name="city" placeholder="City" class="form-control" formControlName="city" autocomplete="off" >
+                        </div>
+                        <div class="form-group">
+                          <label for="username" class="label-control">Sexo:</label><br>
+                          <label class="radio-inline">
+                            <input type="radio" name="userSex" id="Option1" formControlName="sex" value="female"> Mujer
+                          </label>
+                          <label class="radio-inline">
+                            <input type="radio" name="userSex" id="Option2" formControlName="sex" value="male"> Hombre
+                          </label>
+                        </div>
+                        <div class="form-group">
+                          <label for="username" class="label-control">Are you a tattoo artist?:</label>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="role" id="Option1" (click)="toggle(false)" [value]="false">
+                              No
+                            </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="role" id="Option2" (click)="toggle(true)" value="true">
+                              Yes
+                            </label>
+                          </div>
+                        </div>
+                        <div *ngIf="isTattooist">
+                          <div class="form-group">
+                              <label for="username" class="label-control">Phone:</label>
+                              <input type="text" name="phone" placeholder="(55) 5555-5555" class="form-control" formControlName="phone" autocomplete="off" >
+                          </div>
+                        </div>
+                        <div class="form-group">
                             <label for="username" class="label-control">Password:</label>
-                            <input type="password" name="username" placeholder="Password" class="form-control" formControlName="password">
+                            <input type="password" name="username" placeholder="Password" formControlName="password" class="form-control" >
                         </div>
                         <div class="form-group">
                             <label for="username" class="label-control">Confirm Password:</label>
-                            <input type="password" name="username" placeholder="Repeat Password" class="form-control" formControlName="cpassword">
+                            <input type="password" name="username" placeholder="Repeat Password" formControlName="passwordConfirm" class="form-control" >
                         </div>
                     </div>
                     <div class="sign-in-footer">
