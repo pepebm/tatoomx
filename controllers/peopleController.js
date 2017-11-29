@@ -194,6 +194,8 @@ exports.getStudios = function(req,res) {
 exports.likeImage = function(req,res) {
 	db.get().query("INSERT INTO LikesImages (personId,imageId) VALUES ("+req.body.personId+","+req.body.imageId+")",function(err,rows) {
 		var response = {};
+		console.log(err);
+		console.log(rows);
 		if(err){
 			response.status = 2;
 			response.message = err;
