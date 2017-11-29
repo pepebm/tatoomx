@@ -16,7 +16,7 @@ export class ImagesService {
 	}
 
 	getAll(){
-		return this.http.get(this.serverURL + 'images/' + this.sessionService.getSession().id,{headers: this.headers}).map(res => res.json());
+		return this.http.get(this.serverURL + 'images/' + this.currentUser.id,{headers: this.headers}).map(res => res.json());
 	}
 
 	addImage(image){

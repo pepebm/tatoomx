@@ -11,10 +11,11 @@ export class StudiosService {
 	constructor(private http: Http, private sessionService: SessionService){
 		this.headers = new Headers();
 		this.headers.append('Content-Type','application/json');
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
 	}
 
 	getAll(){
-		return this.http.get(this.serverURL + 'studios/' + this.sessionService.getSession().id,{headers: this.headers}).map(res => res.json());
+		return this.http.get(this.serverURL + 'studios/' + this.currentUser.id,{headers: this.headers}).map(res => res.json());
 	}
 
 	getTattooists(studioId){
