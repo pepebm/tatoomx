@@ -41,11 +41,10 @@ exports.getAll = function(req,res) {
 }
 
 exports.add = function(req,res) {
+	console.log(req.body.image);
 	var created_at = new Date();
-	created_at = a.getFullYear().toString() + a.getMonth() + a.getDate() + a.getHours() + a.getMinutes() + a.getSeconds() + '.jpeg';
-	var b64 = req.body.blob;
-	var bufferedImg = new Buffer(b64.substring(b64.indexOf(',')+1),'base64');
-	fs.writeFile('../storage/'+created_at, bufferedImg, function(err) {
+	created_at = created_at.getFullYear().toString() + created_at.getMonth() + created_at.getDate() + created_at.getHours() + created_at.getMinutes() + created_at.getSeconds();
+	fs.writeFile('storage/'+created_at, req.body.image, function(err) {
 		if(err){
 			console.log(err);
 		}

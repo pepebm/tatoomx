@@ -2,6 +2,12 @@
 </div>
 <div class="container">
     <div class="row">
+        <div class="col-md-8">
+            <input type="file" name="imageupload" id="file" accept="image/*" (change)="hola($event)">
+            <button type="button" name="uploadimage" (click)="uploadimage()">Image</button>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
                 <div class="sign-in">
