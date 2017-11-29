@@ -1,6 +1,7 @@
 import {Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { SessionService } from '../providers/session-service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'login',
@@ -11,7 +12,7 @@ import { SessionService } from '../providers/session-service';
 export class LoginComponent implements OnInit {
   myForm: Formgroup;
 
-  constructor(private sessionService: SessionService){
+  constructor(private sessionService: SessionService, private router: Router){
 
   }
 
@@ -20,8 +21,7 @@ export class LoginComponent implements OnInit {
       this.sessionService.login(this.myForm.controls.mail.value,this.myForm.controls.password.value,(this.myForm.controls.type.value ? 'tattooist' : 'person')).subscribe(
         data => {
           if(data.data){
-            // GO TO DISCOVER, at this point this.sessionService.getSession() has an object
-            console.log(this.sessionService.getSession());
+            this.router.navigate(['discover']);
           }
           else{
             // OPEN MODAL, modal text = data.err
