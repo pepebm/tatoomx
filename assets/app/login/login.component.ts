@@ -13,7 +13,6 @@ import { ImagesService } from '../providers/images-service';
 })
 export class LoginComponent implements OnInit {
   myForm: Formgroup;
-  image: any;
 
   constructor(private sessionService: SessionService, private router: Router, private imagesService: ImagesService){
 
@@ -44,36 +43,5 @@ export class LoginComponent implements OnInit {
       password: new FormControl(null, Validators.required),
       type: new FormControl(false, Validators.required)
     });
-  }
-
-  hola(event){
-    var selectedFile = event.target.files[0];
-    var reader = new FileReader();
-    reader.onload = (function(theFile) {
-      return function(e) {
-        // Render thumbnail.
-        var span = document.createElement('span');
-        span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                          '" title="', escape(theFile.name), '"/>'].join('');
-        document.getElementById('list').insertBefore(span, null);
-      };
-    })(f);
-
-    // Read in the image file as a data URL.
-    reader.readAsDataURL(f);
-    console.log(selectedFile);
-    reader.readAsDataURL(selectedFile);
-  }
-
-  uploadimage(){
-
-    this.imagesService.addImage(this.image).subscribe(
-      data => {
-        console.log(data);
-      },
-      e=> {
-        console.log(e);
-      }
-    );
   }
 }

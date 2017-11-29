@@ -20,7 +20,7 @@ export class ImagesService {
 	addImage(image){
 		let body = {
 			image:image,
-			tattooistId: 3//this.sessionService.getSession().tattooistId
+			tattooistId: this.sessionService.getSession().tattooistId
 		};
 		return this.http.post(this.serverURL + 'images/add', body, {headers:this.headers}).map(res => res.json());
 	}

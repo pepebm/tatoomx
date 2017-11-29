@@ -41,9 +41,14 @@ exports.getAll = function(req,res) {
 }
 
 exports.add = function(req,res) {
+	var b64 = req.body.image;
+	var img = b64.substring(b64.indexOf(",") + 1);
+	console.log("---");
 	console.log(req.body.image);
+	console.log("---");
 	var created_at = new Date();
 	created_at = created_at.getFullYear().toString() + created_at.getMonth() + created_at.getDate() + created_at.getHours() + created_at.getMinutes() + created_at.getSeconds();
+	
 	fs.writeFile('storage/'+created_at, req.body.image, function(err) {
 		if(err){
 			console.log(err);

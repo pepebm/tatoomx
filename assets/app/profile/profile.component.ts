@@ -6,10 +6,8 @@ import {FormBuilder, FormGroup, Validators } from "@angular/forms";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css', '../app.component.css']
 })
-
 export class ProfileComponent {
   registerForm: FormGroup;
-
   images: any[] = [
     {
       "src": "http://www.menstattooideas.net/tattooimages/2014/07/skull-tattoo-for-men.jpg"
@@ -27,7 +25,6 @@ export class ProfileComponent {
       "src": "http://trendy-tattoos.com/wp-content/uploads/2016/10/5ef1737744e48cee5606e1fcf992ded1.jpg"
     }
   ];
-
   studios: any[] = [
     {
       "src": "http://www.alexramonmas.com/wp-content/uploads/2014/10/AZTOON-LOGO-ARM3d.jpg"
@@ -48,6 +45,14 @@ export class ProfileComponent {
 
   temp = this.images.slice(0,4);
   temp_studios = this.studios.slice(0,4);
+  image: any;
+
+  constructor(private formBuilder: FormBuilder){
+    this.editForm = this.formBuilder.group({
+        password:['', Validators.required],
+        passwordConfirm:['', Validators.required]
+    });
+  }
 
   showMore() {
     console.log('show more');
@@ -65,10 +70,31 @@ export class ProfileComponent {
     this.temp_studios = this.studios.slice(0,4);
   }
 
-  constructor(private formBuilder: FormBuilder){
-    this.editForm = this.formBuilder.group({
-        password:['', Validators.required],
-        passwordConfirm:['', Validators.required]
-    });
+  /*
+<input type="file" name="imageupload" id="file" accept="image/*" (change)="filehandler($event)">
+<button type="button" name="uploadimage" (click)="uploadimage()">Upload</button>
+*/
+
+  filehandler(event){
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = ((theFile) => {
+      return (e) => {
+        this.image = e.target.result;
+      };
+    })(selectedFile);
+    reader.readAsDataURL(selectedFile);
+  }
+
+  uploadimage(){
+    this.imagesService.addImage(this.image).subscribe(
+      data => {
+        console.log(data);
+        // IF data.status == 0 success ELSEIF data.status == 2 fail
+      },
+      e=> {
+        console.log(e);
+      }
+    );
   }
 }
