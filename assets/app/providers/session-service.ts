@@ -31,7 +31,7 @@ export class SessionService {
 						observer.complete();
 					}
 					else{
-						observer.next({data:false,err:data.message}); 
+						observer.next({data:false,err:data.message});
 						observer.complete();
 					}
 				},
@@ -44,6 +44,7 @@ export class SessionService {
 
 	logout(){
 		this.session = null;
+		console.log("logged out");
 	}
 
 	getSession(){

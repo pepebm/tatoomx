@@ -12,6 +12,7 @@ export class DiscoverComponent {
   images: any = [];
 	constructor(private sessionService: SessionService, private imagesService: ImagesService, private peopleService: PeopleService){
 		this.getImages();
+		console.log(this.sessionService.getSession());
 	}
 
 	getImages(){
