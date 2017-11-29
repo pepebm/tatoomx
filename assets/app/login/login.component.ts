@@ -17,10 +17,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.myForm.valid){
-      this.sessionService.login(this.myForm.controls.username.value,this.myForm.controls.password.value,'tattooist').subscribe(
+      console.log(this.myForm.controls.type.value)
+      this.sessionService.login(this.myForm.controls.mail.value,this.myForm.controls.password.value,(this.myForm.controls.type.value ? 'tattooist' : 'person')).subscribe(
         data => {
+          console.log(this.sessionService.getSession());
           if(data){
-
           }
           else{
             //CANT LOGGIN
@@ -35,8 +36,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(){
     this.myForm = new FormGroup({
-      username: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required)
+      mail: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      type: new FormControl(false, Validators.required)
     });
   }
 }
