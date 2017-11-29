@@ -12,6 +12,8 @@ var peopleRoutes = require('./routes/people');
 var imagesRoutes = require('./routes/images');
 var studiosRoutes = require('./routes/studios');
 
+var fs = require('fs');
+
 var app = express();
 
 // view engine setup

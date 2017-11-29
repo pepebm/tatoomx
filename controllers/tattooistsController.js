@@ -45,7 +45,7 @@ exports.create = function(req,res){
 						res.send(response);
 					}
 					else{
-						db.get().query("INSERT INTO Tattooists (name,gender,city,userId) VALUES ('"+req.body.name+"','"+req.body.gender+"','"+req.body.city+"',"+rows.insertId+")",function(err2,rows2) {
+						db.get().query("INSERT INTO Tattooists (name,gender,city,userId,phone) VALUES ('"+req.body.name+"','"+req.body.gender+"','"+req.body.city+"',"+rows.insertId+",'"+req.body.phone+"')",function(err2,rows2) {
 							if(err2){
 								response.status = 3;
 								response.message = err2;
