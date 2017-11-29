@@ -1,6 +1,7 @@
 var db = require('../db.js');
 var Image = require('../models/image');
 var fs = require('fs');
+var path = require('path');
 
 exports.getAll = function(req,res) {
 	db.get().query('SELECT imageId FROM LikesImages WHERE personId='+req.params.id,function(e,r){
@@ -20,20 +21,36 @@ exports.getAll = function(req,res) {
 				if(err){
 					response.status = 2;
 					response.message = err;
+					res.send(response);
 				}
 				else{
+					var lista = [];
 					for (var i = 0; i < rows.length; i++) {
-						data.push(new Image(rows[i].imageId, rows[i].imageblob.toString('utf8'), rows[i].created_at, rows[i].tattooistId));
+						lista.push( __dirname + '/../' + rows[i].imageblob.toString('utf8'));
+						data.push(new Image(rows[i].imageId, "", rows[i].created_at, rows[i].tattooistId));
 					}
 					for (var i = 0; i < data.length; i++) {
 						if(liked.indexOf(data[i].id) > -1) data[i].liked = true;
 						else data[i].liked = false;
 					}
-					response.status = 0;
-					response.message = 'Success';
-					response.data = data;
+					idx = 0;
+					lista = lista.map(_path => {
+						return new Promise((resolve,reject) => {
+							var file = fs.readFile(path.resolve(_path),'utf8', (err,data2) => {
+								if(err) throw err;
+								data[idx].image = data2;
+								idx += 1
+								resolve();
+							});
+						});
+					});
+					Promise.all(lista).then(data3 => {
+						response.status = 0;
+						response.message = 'Success';
+						response.data = data;
+						res.send(response);
+					}).catch(e => {console.log(e)});
 				}
-				res.send(response);
 			});
 		}
 	});
