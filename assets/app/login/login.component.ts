@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   constructor(private sessionService: SessionService, private router: Router, private imagesService: ImagesService){
 
   }
-  @LocalStorage() public username:string = '';
   onSubmit(){
     if(this.myForm.valid){
       this.sessionService.login(this.myForm.controls.mail.value,this.myForm.controls.password.value,(this.myForm.controls.type.value ? 'tattooist' : 'person')).subscribe(
